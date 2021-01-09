@@ -84,10 +84,10 @@ function RenderPartner({partner}) {
                 </Media>
             </React.Fragment>
         )
-        return (
-            <div />
-        )
     } 
+    return (
+        <div />
+    )
 }
 
 export default About;
