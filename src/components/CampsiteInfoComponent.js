@@ -33,7 +33,7 @@ class CommentForm extends Component {
 
     handleSubmit(values) {
         this.toggleModal();
-        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
+        this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
     }
 
     render() {
@@ -114,7 +114,7 @@ function RenderCampsite({campsite}) {
     );
 }
 
-function RenderComments({comments, addComment, campsiteId}) {
+function RenderComments({comments, postComment, campsiteId}) {
     if(comments) {
         return(
             <div className="col-md-5 m-1">
@@ -124,7 +124,7 @@ function RenderComments({comments, addComment, campsiteId}) {
                     <p>{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                 </div>
                     )}
-                    <CommentForm campsiteId={campsiteId} addComment={addComment} />
+                    <CommentForm campsiteId={campsiteId} postComment={postComment} />
             </div>
         )
     }
@@ -168,9 +168,9 @@ function CampsiteInfo(props) {
                 </div>
                 <div className="row">
                     <RenderCampsite campsite={props.campsite} />
-                    <RenderComments 
+                    <RenderComments
                         comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         campsiteId={props.campsite.id}
                     />
                 </div>
